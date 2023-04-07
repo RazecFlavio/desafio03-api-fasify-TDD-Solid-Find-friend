@@ -18,7 +18,9 @@ export async function authenticate(
     const usecase = makeAuthenticateOrganizationUseCase()
     const { organization } = await usecase.execute({ email, password })
     const token = await reply.jwtSign(
-      {},
+      {
+        city: organization.city,
+      },
       {
         sign: {
           sub: organization.id,
@@ -26,7 +28,9 @@ export async function authenticate(
       },
     )
     const refreshToken = await reply.jwtSign(
-      {},
+      {
+        city: organization.city,
+      },
       {
         sign: { sub: organization.id },
       },

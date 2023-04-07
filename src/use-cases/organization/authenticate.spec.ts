@@ -20,6 +20,7 @@ describe('Authenticate Organization UseCase', async () => {
       whatsapp: '551199790999',
       zip_code: '07111-140',
       hash: await hash('123456', 6),
+      city: 'cidade',
     })
 
     const { organization } = await sut.execute({

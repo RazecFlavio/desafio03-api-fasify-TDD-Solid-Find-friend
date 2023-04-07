@@ -13,11 +13,19 @@ export class InMemoryOrganizationRepository implements IOrganizationRepository {
       whatsapp: data.whatsapp,
       zip_code: data.zip_code,
       hash: data.hash,
+      city: data.city,
       created_at: new Date(),
       id: randomUUID(),
     }
     this.items.push(organization)
 
+    return organization
+  }
+
+  async findById(id: string): Promise<Organization | null> {
+    const organization = this.items.find((item) => item.id === id)
+
+    if (!organization) return null
     return organization
   }
 

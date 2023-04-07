@@ -9,10 +9,11 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     zipCode: z.string(),
     address: z.string(),
     whatsapp: z.string(),
+    city: z.string(),
     password: z.string(),
   })
 
-  const { contactName, email, zipCode, address, whatsapp, password } =
+  const { contactName, email, zipCode, address, whatsapp, city, password } =
     createBodySchema.parse(request.body)
 
   const usecase = makeCreateOrganizationUseCase()
@@ -23,6 +24,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     zipCode,
     address,
     whatsapp,
+    city,
     password,
   })
 

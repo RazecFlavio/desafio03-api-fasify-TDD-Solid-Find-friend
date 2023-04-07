@@ -4,6 +4,7 @@ import { ResourcesNotFound } from '../errors/resources-not-found'
 import { Pet } from '@prisma/client'
 
 interface CreatePetUseCaseRequest {
+  city: string
   name: string
   description: string
   age: 'PUPPY' | 'YOUNG' | 'ADULT' | 'OLD'
@@ -22,6 +23,7 @@ export class CreatePetUseCase {
   ) {}
 
   async execute({
+    city,
     name,
     description,
     age,
@@ -35,6 +37,7 @@ export class CreatePetUseCase {
     if (!organization) throw new ResourcesNotFound()
 
     const pet = await this.petRepository.create({
+      city,
       name,
       description,
       age,
